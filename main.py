@@ -19,6 +19,19 @@ class Game():
 # Setting object game as type Game   
 game = Game()
 
+# Defining Player object class
+# class Player(Actor):
+#     def __init__(self):
+#         self.image = 'field'
+#         self.pos = (0,0)
+
+# Setting objects player_1 and player_2 as type Player
+# player_1 = Player()
+# player_2 = Player()
+
+player_1 = Actor('field',(100,100))
+player_2 = Actor('field',(-100,-100))
+
 # Setting background image
 BACKGROUND_IMAGE = 'field'
 
