@@ -21,6 +21,7 @@ class Game():
         self.view = 'start'
         self.FRAMES = 0
         self.ballCollisions = 0
+        self.goals = 0
 
 # Setting object game as type Game   
 game = Game()
@@ -68,11 +69,13 @@ def testBallCollision():
 def testGoal():
     if player_1.colliderect(goal_2):
         game.score += 10
+        game.goals += 1
         player_1.pos = PLAYER_1_START
         player_2.pos = PLAYER_2_START
         time.sleep(0.03)
     elif player_2.colliderect(goal_1):
         game.score += 10
+        game.goals += 1
         player_1.pos = PLAYER_1_START
         player_2.pos = PLAYER_2_START
         time.sleep(0.03)
@@ -85,6 +88,7 @@ You lose!!!
 Score: {game.score}
 Ball Collisions: {game.ballCollisions}
 Frames: {game.FRAMES}
+Goals: {game.goals}
 '''
     win = f'''
 You win!!!
@@ -92,11 +96,14 @@ You win!!!
 Score: {game.score}
 Ball Collisions: {game.ballCollisions}
 Frames: {game.FRAMES}
+Goals: {game.goals}
 '''
     if game.score <= -100:
+        time.sleep(1)
         print(lose)
         quit()
     elif game.score >= 100:
+        time.sleep(1)
         print(win)
         quit()
     else:
@@ -119,6 +126,10 @@ def draw():
     player_2.draw()
     goal_1.draw()
     goal_2.draw()
+    screen.draw.text(str(f'Score: {game.score}'), (10, 10))
+    screen.draw.text(str(f'Ball Collisions: {game.ballCollisions}'), (10,30))
+    screen.draw.text(str(f'Goals: {game.goals}'), (WIDTH - 120, 10))
+    screen.draw.text(str(f'Frames: {game.FRAMES}'), (WIDTH - 120, 30))
 
 # Wrap up with pgzrun.go() method to combine update and draw loops
 pgzrun.go()
