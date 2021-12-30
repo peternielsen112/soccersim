@@ -19,18 +19,9 @@ class Game():
 # Setting object game as type Game   
 game = Game()
 
-# Defining Player object class
-# class Player(Actor):
-#     def __init__(self):
-#         self.image = 'field'
-#         self.pos = (0,0)
-
-# Setting objects player_1 and player_2 as type Player
-# player_1 = Player()
-# player_2 = Player()
-
-player_1 = Actor('field',(100,100))
-player_2 = Actor('field',(-100,-100))
+# Creating players
+player_1 = Actor('ball',(100,100))
+player_2 = Actor('ball',(200,200))
 
 # Setting background image
 BACKGROUND_IMAGE = 'field'
@@ -43,6 +34,8 @@ def update():
 def draw():
     screen.clear()
     screen.blit(BACKGROUND_IMAGE, (0,0))
+    player_1.draw()
+    player_2.draw()
 
 # Wrap up with pgzrun.go() method to combine update and draw loops
 pgzrun.go()
