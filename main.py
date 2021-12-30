@@ -29,6 +29,8 @@ game = Game()
 player_1 = Actor('ball',PLAYER_1_START)
 player_2 = Actor('ball',PLAYER_2_START)
 
+goal_1 = Actor('rightgoal',(660,232))
+goal_2 = Actor('leftgoal',(107,232))
 
 # Keyboard input
 # Get Player 1's keyboard input
@@ -60,7 +62,20 @@ def testBallCollision():
         player_2.pos = PLAYER_2_START
         game.ballCollisions += 1
         game.score -= 10
-        time.sleep(0.3)
+        time.sleep(0.03)
+
+# Testing for goal collisions
+def testGoal():
+    if player_1.colliderect(goal_2):
+        game.score += 10
+        player_1.pos = PLAYER_1_START
+        player_2.pos = PLAYER_2_START
+        time.sleep(0.03)
+    elif player_2.colliderect(goal_1):
+        game.score += 10
+        player_1.pos = PLAYER_1_START
+        player_2.pos = PLAYER_2_START
+        time.sleep(0.03)
 
 # Testing score for game's end
 def testScore():
@@ -93,6 +108,7 @@ def update():
     GET_KEYBOARD_2(PLAYER_SPEED)
     testBallCollision()
     testScore()
+    testGoal()
     game.FRAMES += 1
 
 # Draw loop
@@ -101,6 +117,8 @@ def draw():
     screen.blit(BACKGROUND_IMAGE, (0,0))
     player_1.draw()
     player_2.draw()
+    goal_1.draw()
+    goal_2.draw()
 
 # Wrap up with pgzrun.go() method to combine update and draw loops
 pgzrun.go()
